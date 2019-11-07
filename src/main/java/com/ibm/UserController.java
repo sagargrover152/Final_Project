@@ -13,6 +13,11 @@ public class UserController {
 	@Autowired
 	UserRepository repo;
 	
+	@RequestMapping("/search")
+	void doNothing() {
+		
+	}
+	
 	@RequestMapping("/search/{str}")
 	List<String> searchData(@PathVariable String str){
 		 return repo.findAllNameAndAddress(str);
