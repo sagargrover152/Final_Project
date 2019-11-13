@@ -23,13 +23,17 @@ public class UserService {
 		return repo.findAllNameAndAddress(str);
 	}
 
-	public Iterable<EmployeeDetails> findAll() {
+	public Iterable<EmployeeDetails> findAllEmployees() {
 		return repo.findAll();
 	}
 
 	public void save(ProjectDetails project) {
 		// TODO Auto-generated method stub
 		repoproject.save(project);
+	}
+	
+	public Iterable<ProjectDetails> findAllProjects() {
+		return repoproject.findAll();
 	}
 	
 	

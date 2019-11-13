@@ -13,7 +13,9 @@ public class ProjectDetails {
 	String clientname,projectname,technologies,startdate,enddate,city,country,priority,
 			manager,teammembers;
 	
-	
+	ProjectDetails(){
+		
+	}
 	public ProjectDetails(String clientname, String projectname, String technologies, String startdate, String enddate,
 			String city, String country, String priority, String manager, String teammembers) {
 		this.clientname = clientname;

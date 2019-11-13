@@ -32,11 +32,16 @@ public class UserController {
 	
 	@RequestMapping("/employee")
 	Iterable<EmployeeDetails> getCards(){
-		return service.findAll();
+		return service.findAllEmployees();
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/project")
 	void addProject(@RequestBody ProjectDetails project) {
 		service.save(project);
+	}
+	
+	@RequestMapping("/project")
+	Iterable<ProjectDetails> getProject(){
+		return service.findAllProjects();
 	}
 }
