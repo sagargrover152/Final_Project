@@ -1,4 +1,4 @@
-package com.ibm;
+package com.ibm.controller;
 
 import java.util.List;
 
@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ibm.bean.EmployeeDetails;
+import com.ibm.bean.ProjectDetails;
+import com.ibm.service.UserService;
+
 
 @RestController
 public class UserController {
 
 	@Autowired
-	UserRepository repo;
+	UserService service;
 	
 	@RequestMapping("/search")
 	void doNothing() {
@@ -23,17 +27,16 @@ public class UserController {
 	
 	@RequestMapping("/search/{str}")
 	List<String> searchData(@PathVariable String str){
-		 return repo.findAllNameAndAddress(str);
+		 return service.findAllNameAndAddress(str);
 	}
 	
 	@RequestMapping("/employee")
-	Iterable<Employee_details> getCards(){
-		return repo.findAll();
+	Iterable<EmployeeDetails> getCards(){
+		return service.findAll();
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/employee")
-	void addEmployee(@RequestBody Employee_details emp) {
-		emp.setFullname(emp.getFirstname()+" "+emp.getLastname());
-		repo.save(emp);
+	@RequestMapping(method = RequestMethod.POST, value = "/project")
+	void addProject(@RequestBody ProjectDetails project) {
+		service.save(project);
 	}
 }

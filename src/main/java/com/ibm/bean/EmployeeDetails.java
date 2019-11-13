@@ -1,4 +1,4 @@
-package com.ibm;
+package com.ibm.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,16 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Employee_details {
+public class EmployeeDetails {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
 	String firstname,lastname,fullname,email,designation,phonenumber,technologies;
-	public Employee_details() {
+	public EmployeeDetails() {
 		// TODO Auto-generated constructor stub
 	}
-	public Employee_details(String firstname, String lastname, String email, String designation,
+	public EmployeeDetails(String firstname, String lastname, String email, String designation,
 			String phonenumber, String technologies) {
 		this.firstname = firstname;
 		this.lastname = lastname;
