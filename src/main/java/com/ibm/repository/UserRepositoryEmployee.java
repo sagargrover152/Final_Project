@@ -11,7 +11,7 @@ import com.ibm.bean.EmployeeDetails;
 public interface UserRepositoryEmployee extends CrudRepository<EmployeeDetails, Long> {
 	
 	
-	@Query(value = "select fullname from employee_details where fullname LIKE %:un% or technologies LIKE %:un%",nativeQuery = true)
+	@Query(value = "select projectname from project_details where projectname LIKE %:un%",nativeQuery = true)
 	List<String> findAllNameAndAddress(@Param(value = "un") String un);
 
 }

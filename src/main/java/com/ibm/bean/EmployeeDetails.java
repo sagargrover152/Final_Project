@@ -8,46 +8,42 @@ import javax.persistence.Id;
 
 @Entity
 public class EmployeeDetails {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int id;
-	String firstname,lastname,fullname,email,designation,phonenumber,technologies;
+	int empId;
+	String firstName,lastName,fullName,Availability,email,designation,phoneNumber,technologies;
 	public EmployeeDetails() {
 		// TODO Auto-generated constructor stub
 	}
-	public EmployeeDetails(String firstname, String lastname, String email, String designation,
-			String phonenumber, String technologies) {
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.designation = designation;
-		this.phonenumber = phonenumber;
-		this.technologies = technologies;
+	public String getAvailability() {
+		return Availability;
 	}
-	public int getId() {
-		return id;
+	public void setAvailability(String availability) {
+		Availability = availability;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public int getEmpId() {
+		return empId;
 	}
-	public String getFirstname() {
-		return firstname;
+	public void setEmpId(int empId) {
+		this.empId = empId;
 	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public String getFirstName() {
+		return firstName;
 	}
-	public String getLastname() {
-		return lastname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public String getLastName() {
+		return lastName;
 	}
-	public String getFullname() {
-		return fullname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 	public String getEmail() {
 		return email;
@@ -61,11 +57,11 @@ public class EmployeeDetails {
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
-	public String getPhonenumber() {
-		return phonenumber;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
-	public void setPhonenumber(String phonenumber) {
-		this.phonenumber = phonenumber;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 	public String getTechnologies() {
 		return technologies;

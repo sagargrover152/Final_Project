@@ -44,4 +44,9 @@ public class UserController {
 	Iterable<ProjectDetails> getProject(){
 		return service.findAllProjects();
 	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/project/{projectname}")
+	void updateUser(@RequestBody ProjectDetails proj, @PathVariable String projectName) {
+		service.updateUser(proj,projectName);
+	}
 }

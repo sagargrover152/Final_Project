@@ -7,39 +7,43 @@ import javax.persistence.Id;
 
 @Entity
 public class ProjectDetails {
-	@Id
+	
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int id;
-	String clientname,projectname,technologies,startdate,enddate,city,country,priority,
-			manager,teammembers;
+	int projId;
+	
+	@Id
+	String projectName;
+	String clientName,technologies,startDate,endDate,city,country,priority,
+			manager,teamMembers,projectDescription;
 	
 	ProjectDetails(){
 		
 	}
-	public ProjectDetails(String clientname, String projectname, String technologies, String startdate, String enddate,
-			String city, String country, String priority, String manager, String teammembers) {
-		this.clientname = clientname;
-		this.projectname = projectname;
+	public ProjectDetails(String clientName, String projectName, String technologies, String startDate, String endDate,
+			String city, String country, String priority, String manager, String teamMembers, String projectDescription) {
+		this.clientName = clientName;
+		this.projectName = projectName;
 		this.technologies = technologies;
-		this.startdate = startdate;
-		this.enddate = enddate;
+		this.startDate = startDate;
+		this.endDate = endDate;
 		this.city = city;
 		this.country = country;
 		this.priority = priority;
 		this.manager = manager;
-		this.teammembers = teammembers;
+		this.teamMembers = teamMembers;
+		this.projectDescription = projectDescription;
 	}
-	public String getClientname() {
-		return clientname;
+	public String getClientName() {
+		return clientName;
 	}
-	public void setClientname(String clientname) {
-		this.clientname = clientname;
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
 	}
-	public String getProjectname() {
-		return projectname;
+	public String getProjectName() {
+		return projectName;
 	}
-	public void setProjectname(String projectname) {
-		this.projectname = projectname;
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
 	}
 	public String getTechnologies() {
 		return technologies;
@@ -47,17 +51,17 @@ public class ProjectDetails {
 	public void setTechnologies(String technologies) {
 		this.technologies = technologies;
 	}
-	public String getStartdate() {
-		return startdate;
+	public String getStartDate() {
+		return startDate;
 	}
-	public void setStartdate(String startdate) {
-		this.startdate = startdate;
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
-	public String getEnddate() {
-		return enddate;
+	public String getEndDate() {
+		return endDate;
 	}
-	public void setEnddate(String enddate) {
-		this.enddate = enddate;
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 	public String getCity() {
 		return city;
@@ -83,14 +87,20 @@ public class ProjectDetails {
 	public void setManager(String manager) {
 		this.manager = manager;
 	}
-	public String getTeammembers() {
-		return teammembers;
+	public String getTeamMembers() {
+		return teamMembers;
 	}
-	public void setTeammembers(String teammembers) {
-		this.teammembers = teammembers;
+	public void setTeamMembers(String teamMembers) {
+		this.teamMembers = teamMembers;
 	}
-	public int getId() {
-		return id;
+	public int getProjId() {
+		return projId;
+	}
+	public String getProjectDescription() {
+		return projectDescription;
+	}
+	public void setProjectDescription(String projectDescription) {
+		this.projectDescription = projectDescription;
 	}
 	
 }

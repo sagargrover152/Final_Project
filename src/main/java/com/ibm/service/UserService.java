@@ -35,6 +35,22 @@ public class UserService {
 	public Iterable<ProjectDetails> findAllProjects() {
 		return repoproject.findAll();
 	}
+
+	public void updateUser(ProjectDetails proj, String givenName) {
+		String clientName = proj.getClientName();
+		String projectName = proj.getProjectName();
+		String startDate = proj.getStartDate();
+		String endDate = proj.getEndDate();
+		String city = proj.getCity();
+		String country = proj.getCountry();
+		String technologies = proj.getTechnologies();
+		String teamMembers = proj.getTeamMembers();
+		String manager = proj.getManager();
+		String priority = proj.getPriority();
+		repoproject.updatebyname(clientName,projectName,startDate,endDate,city,
+				country,technologies,teamMembers,manager,priority,givenName);
+		
+	}
 	
 	
 }
