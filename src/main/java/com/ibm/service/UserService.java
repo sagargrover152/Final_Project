@@ -20,7 +20,7 @@ public class UserService {
 	UserRepositoryProject repoproject;
 
 	public List<String> findAllNameAndAddress(String str) {
-		return repo.findAllNameAndAddress(str);
+		return repoproject.findAllNameAndAddress(str);
 	}
 
 	public Iterable<EmployeeDetails> findAllEmployees() {
@@ -47,9 +47,15 @@ public class UserService {
 		String teamMembers = proj.getTeamMembers();
 		String manager = proj.getManager();
 		String priority = proj.getPriority();
+		String projectDescription = proj.getProjectDescription();
 		repoproject.updatebyname(clientName,projectName,startDate,endDate,city,
-				country,technologies,teamMembers,manager,priority,givenName);
+				country,technologies,teamMembers,manager,priority,givenName,projectDescription);
 		
+	}
+
+	public ProjectDetails getProjectDetails(String projectName) {
+		// TODO Auto-generated method stub
+		return repoproject.findByProjectName(projectName);
 	}
 	
 	
