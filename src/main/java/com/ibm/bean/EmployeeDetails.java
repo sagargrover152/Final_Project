@@ -18,9 +18,6 @@ public class EmployeeDetails {
 	public String getAvailability() {
 		return Availability;
 	}
-	public void setAvailability(String availability) {
-		Availability = availability;
-	}
 	public int getEmpId() {
 		return empId;
 	}

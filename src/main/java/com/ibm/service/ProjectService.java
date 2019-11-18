@@ -11,32 +11,25 @@ import com.ibm.repository.UserRepositoryEmployee;
 import com.ibm.repository.UserRepositoryProject;
 
 @Service
-public class UserService {
-
-	@Autowired
-	UserRepositoryEmployee repo;
+public class ProjectService {
 	
 	@Autowired
-	UserRepositoryProject repoproject;
+	UserRepositoryProject projRepo;
 
-	public List<String> findAllNameAndAddress(String str) {
-		return repoproject.findAllNameAndAddress(str);
-	}
-
-	public Iterable<EmployeeDetails> findAllEmployees() {
-		return repo.findAll();
+	public List<String> findAllProject(String str) {
+		return projRepo.findAllProject(str);
 	}
 
 	public void save(ProjectDetails project) {
 		// TODO Auto-generated method stub
-		repoproject.save(project);
+		projRepo.save(project);
 	}
 	
 	public Iterable<ProjectDetails> findAllProjects() {
-		return repoproject.findAll();
+		return projRepo.findAll();
 	}
 
-	public void updateUser(ProjectDetails proj, String givenName) {
+	public void updateProject(ProjectDetails proj, String givenName) {
 		String clientName = proj.getClientName();
 		String projectName = proj.getProjectName();
 		String startDate = proj.getStartDate();
@@ -48,14 +41,19 @@ public class UserService {
 		String manager = proj.getManager();
 		String priority = proj.getPriority();
 		String projectDescription = proj.getProjectDescription();
-		repoproject.updatebyname(clientName,projectName,startDate,endDate,city,
+		projRepo.updatebyname(clientName,projectName,startDate,endDate,city,
 				country,technologies,teamMembers,manager,priority,givenName,projectDescription);
 		
 	}
 
 	public ProjectDetails getProjectDetails(String projectName) {
 		// TODO Auto-generated method stub
-		return repoproject.findByProjectName(projectName);
+		return projRepo.findByProjectName(projectName);
+	}
+
+	public void delProject(String projectName) {
+		// TODO Auto-generated method stub
+		projRepo.deleteByName(projectName);
 	}
 	
 	

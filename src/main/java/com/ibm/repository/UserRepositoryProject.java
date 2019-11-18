@@ -6,10 +6,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ibm.bean.ProjectDetails;
 
+@Repository
 public interface UserRepositoryProject extends CrudRepository<ProjectDetails, String> {
 	
 	@Modifying
@@ -32,8 +34,13 @@ public interface UserRepositoryProject extends CrudRepository<ProjectDetails, St
 			@Param(value = "projectDescription")String projectDescription);
 	
 	@Query(value = "select project_name from project_details where project_name LIKE %:un%",nativeQuery = true)
-	List<String> findAllNameAndAddress(@Param(value = "un") String un);
+	List<String> findAllProject(@Param(value = "un") String un);
 
 	ProjectDetails findByProjectName(String projectName);
+	
+	@Modifying
+	@Transactional
+	@Query(value = "delete from project_details where project_name = :projectName",nativeQuery = true)
+	void deleteByName(@Param (value = "projectName")String projectName);
 		
 }
