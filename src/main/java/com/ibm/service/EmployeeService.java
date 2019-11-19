@@ -15,7 +15,10 @@ public class EmployeeService {
 	
 	public void save(EmployeeDetails employee) {
 		employee.setFullName(employee.getFirstName()+" "+employee.getLastName());
+		employee.setAvailability(" ");
+		employee.setProjectAssigned(" ");
 		empRepo.save(employee);
+		empRepo.setDefault(employee.getFullName());
 	}
 
 	public Iterable<EmployeeDetails> findAllEmployees() {
@@ -34,6 +37,27 @@ public class EmployeeService {
 	public void delEmployee(String employeeName) {
 		// TODO Auto-generated method stub
 		empRepo.deleteByName(employeeName);
+	}
+
+	public void assignProject(EmployeeDetails employee, String projectName) {
+		// TODO Auto-generated method stub
+		String empName=employee.getFirstName()+" "+employee.getLastName();
+		empRepo.assignProject(empName,projectName);
+	}
+
+	public Iterable<EmployeeDetails> getAvailableEmployees() {
+		// TODO Auto-generated method stub
+		return empRepo.getAvailableEmployees();
+	}
+
+	public Iterable<EmployeeDetails> findAllEmployeesInProject(String projectName) {
+		// TODO Auto-generated method stub
+		return empRepo.findAllEmployeesInProject(projectName);
+	}
+
+	public void unAssignProject(EmployeeDetails employee, String empName) {
+		// TODO Auto-generated method stub
+		empRepo.setDefault(empName);
 	}
 
 }

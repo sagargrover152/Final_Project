@@ -45,9 +45,29 @@ public class UserController {
 		empService.delEmployee(employeeName);
 	}
 	
+	@RequestMapping("/availableEmployee")
+	Iterable<EmployeeDetails> getAvailableEmployees(){
+		return empService.getAvailableEmployees();
+	}
+	
+	@RequestMapping("/employee/{projectName}")
+	Iterable<EmployeeDetails> getCards(@PathVariable String projectName){
+		return empService.findAllEmployeesInProject(projectName);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT,value = "/employee/unassign/{empName}")
+	void unAssignProject(@RequestBody EmployeeDetails employee,@PathVariable String empName) {
+		empService.unAssignProject(employee,empName);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/availableEmployee/{projectName}")
+	void assignProject(@RequestBody EmployeeDetails employee,@PathVariable String projectName) {
+		empService.assignProject(employee,projectName);
+	}
+	
 	@RequestMapping("/search")
-	void doNothing() {
-		
+	String doNothing() {
+		return "testing api...";
 	}
 	
 	@RequestMapping("/search/{str}")
