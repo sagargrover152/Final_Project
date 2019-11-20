@@ -65,6 +65,11 @@ public class UserController {
 		empService.assignProject(employee,projectName);
 	}
 	
+	@RequestMapping("/projectEmployees/{projectName}")
+	List<String> getEmployeesOnProject(@PathVariable String projectName){
+		return empService.getEmployeesOnProject(projectName);
+	}
+	
 	@RequestMapping("/search")
 	String doNothing() {
 		return "testing api...";

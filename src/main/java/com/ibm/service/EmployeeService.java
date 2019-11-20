@@ -1,5 +1,7 @@
 package com.ibm.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,6 +65,11 @@ public class EmployeeService {
 	public void resetEmployeeWithDeleteProject(String projectName) {
 		// TODO Auto-generated method stub
 		empRepo.resetEmployeeWithDeleteProject(projectName);
+	}
+
+	public List<String> getEmployeesOnProject(String projectName) {
+		// TODO Auto-generated method stub
+		return empRepo.getEmployeesOnProject(projectName);
 	}
 
 }

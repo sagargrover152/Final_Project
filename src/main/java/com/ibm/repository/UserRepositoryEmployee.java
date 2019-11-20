@@ -2,6 +2,8 @@ package com.ibm.repository;
 
 
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -51,6 +53,10 @@ public interface UserRepositoryEmployee extends CrudRepository<EmployeeDetails, 
 	@Query(value = "update employee_details set availability='YES', project_assigned='Not assigned'" + 
 			" where project_assigned=:projectName",nativeQuery = true)
 	void resetEmployeeWithDeleteProject(@Param(value = "projectName")String projectName);
+
+	
+	@Query(value = "select full_name from employee_details where project_assigned=:projectName",nativeQuery = true)
+	List<String> getEmployeesOnProject(@Param(value = "projectName")String projectName);
 
 	
 	
