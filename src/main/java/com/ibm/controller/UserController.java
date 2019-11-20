@@ -99,5 +99,6 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.DELETE,value = "/project/{projectName}")
 	void delProject(@PathVariable String projectName) {
 		projService.delProject(projectName);
+		empService.resetEmployeeWithDeleteProject(projectName);
 	}
 }

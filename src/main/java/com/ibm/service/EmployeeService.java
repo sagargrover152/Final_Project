@@ -60,4 +60,9 @@ public class EmployeeService {
 		empRepo.setDefault(empName);
 	}
 
+	public void resetEmployeeWithDeleteProject(String projectName) {
+		// TODO Auto-generated method stub
+		empRepo.resetEmployeeWithDeleteProject(projectName);
+	}
+
 }

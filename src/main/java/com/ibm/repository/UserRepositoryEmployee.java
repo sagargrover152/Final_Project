@@ -46,6 +46,12 @@ public interface UserRepositoryEmployee extends CrudRepository<EmployeeDetails, 
 			+ " where full_name=:empName",nativeQuery = true)
 	void setDefault(@Param(value = "empName")String empName);
 
+	@Modifying
+	@Transactional
+	@Query(value = "update employee_details set availability='YES', project_assigned='Not assigned'" + 
+			" where project_assigned=:projectName",nativeQuery = true)
+	void resetEmployeeWithDeleteProject(@Param(value = "projectName")String projectName);
+
 	
 	
 	
