@@ -11,7 +11,10 @@ public class EmployeeDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int empId;
-	String firstName,lastName,fullName,Availability,email,designation,phoneNumber,technologies;
+	String firstName,lastName,fullName,Availability,email,designation,phoneNumber,technologies,projectAssigned;
+	public String getProjectAssigned() {
+		return projectAssigned;
+	}
 	public EmployeeDetails() {
 		// TODO Auto-generated constructor stub
 	}
@@ -20,6 +23,9 @@ public class EmployeeDetails {
 	}
 	public void setAvailability(String availability) {
 		Availability = availability;
+	}
+	public void setProjectAssigned(String projectAssigned) {
+		this.projectAssigned = projectAssigned;
 	}
 	public int getEmpId() {
 		return empId;
