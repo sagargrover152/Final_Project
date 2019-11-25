@@ -94,7 +94,9 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.POST, value = "/project")
 	void addProject(@RequestBody ProjectDetails project) {
 		projService.save(project);
-		restTemplate.put("http://localhost:8080/manager/{"+project.getManager()+"}", project);
+		String manager=project.getManager();
+		String url = "http://localhost:8080/manager/"+manager;
+		restTemplate.put(url, project);
 		restTemplate.postForObject("http://localhost:8787/project",project,String.class);
 	}
 	
@@ -107,7 +109,7 @@ public class UserController {
 	void updateProject(@RequestBody ProjectDetails proj, @PathVariable String projectName) {
 		projService.updateProject(proj,projectName);
 		restTemplate.put("http://localhost:8080/managerchange", proj.getProjectName());
-		restTemplate.put("http://localhost:8080/manager/{"+proj.getManager()+"}", proj);
+		restTemplate.put("http://localhost:8080/manager/"+proj.getManager(), proj);
 		
 	}
 	

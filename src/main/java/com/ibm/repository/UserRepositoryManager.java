@@ -12,7 +12,7 @@ import com.ibm.bean.ManagerDetails;
 @Repository
 public interface UserRepositoryManager extends CrudRepository<ManagerDetails, Integer> {
 
-	@Query(value = "select full_name from manager_details where availability:'YES'",nativeQuery = true)
+	@Query(value = "select full_name from manager_details where availability='YES'",nativeQuery = true)
 	Iterable<String> findAllManagersAvailable();
 
 	@Modifying

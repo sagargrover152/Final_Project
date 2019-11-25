@@ -38,9 +38,10 @@ public class ProjectService {
 		String country = proj.getCountry();
 		String technologies = proj.getTechnologies();
 		String priority = proj.getPriority();
+		String manager= proj.getManager();
 		String projectDescription = proj.getProjectDescription();
 		projRepo.updatebyname(clientName,projectName,startDate,endDate,city,
-				country,technologies,priority,givenName,projectDescription);
+				country,technologies,priority,givenName,projectDescription,manager);
 		
 	}
 

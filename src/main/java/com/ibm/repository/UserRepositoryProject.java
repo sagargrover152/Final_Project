@@ -19,7 +19,7 @@ public interface UserRepositoryProject extends CrudRepository<ProjectDetails, St
 	@Query(value = "update project_details set city=:city,client_name=:clientName"
 			+ ",country=:country,end_date=:endDate,priority=:priority,"
 			+ "project_name=:projectName,start_date=:startDate,"
-			+ "technologies=:technologies,project_description=:projectDescription WHERE project_name=:givenName",nativeQuery = true)
+			+ "technologies=:technologies,project_description=:projectDescription,manager=:manager WHERE project_name=:givenName",nativeQuery = true)
 	void updatebyname(@Param(value = "clientName") String clientName,
 			@Param(value = "projectName")String projectName,
 			@Param(value = "startDate")String startDate,
@@ -29,7 +29,8 @@ public interface UserRepositoryProject extends CrudRepository<ProjectDetails, St
 			@Param(value = "technologies")String technologies,
 			@Param(value = "priority")String priority,
 			@Param(value = "givenName")String givenName,
-			@Param(value = "projectDescription")String projectDescription);
+			@Param(value = "projectDescription")String projectDescription,
+			@Param(value = "manager") String manager);
 	
 	@Query(value = "select project_name from project_details where project_name LIKE %:un%",nativeQuery = true)
 	List<String> findAllProject(@Param(value = "un") String un);
