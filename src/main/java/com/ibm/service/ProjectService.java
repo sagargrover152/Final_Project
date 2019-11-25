@@ -22,7 +22,6 @@ public class ProjectService {
 
 	public void save(ProjectDetails project) {
 		// TODO Auto-generated method stub
-		project.setManager("Not assigned");
 		projRepo.save(project);
 	}
 	

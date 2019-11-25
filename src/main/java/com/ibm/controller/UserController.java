@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.ibm.bean.EmployeeDetails;
+import com.ibm.bean.ManagerDetails;
 import com.ibm.bean.ProjectDetails;
 import com.ibm.service.EmployeeService;
+import com.ibm.service.ManagerService;
 import com.ibm.service.ProjectService;
 
 
@@ -25,6 +27,9 @@ public class UserController {
 	
 	@Autowired
 	EmployeeService empService;
+	
+	@Autowired
+	ManagerService managerServ;
 	
 	@Autowired
 	RestTemplate restTemplate;
@@ -89,6 +94,7 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.POST, value = "/project")
 	void addProject(@RequestBody ProjectDetails project) {
 		projService.save(project);
+		restTemplate.put("http://localhost:8080/manager/{"+project.getManager()+"}", project);
 		restTemplate.postForObject("http://localhost:8787/project",project,String.class);
 	}
 	
@@ -100,6 +106,9 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.PUT, value = "/project/{projectName}")
 	void updateProject(@RequestBody ProjectDetails proj, @PathVariable String projectName) {
 		projService.updateProject(proj,projectName);
+		restTemplate.put("http://localhost:8080/managerchange", proj.getProjectName());
+		restTemplate.put("http://localhost:8080/manager/{"+proj.getManager()+"}", proj);
+		
 	}
 	
 	@RequestMapping("/project/{projectName}")
@@ -112,4 +121,25 @@ public class UserController {
 		projService.delProject(projectName);
 		empService.resetEmployeeWithDeleteProject(projectName);
 	}
+	
+	@RequestMapping("/manager")
+	Iterable<ManagerDetails> getManagers(){
+		return managerServ.findAllManagers();
+	}
+	
+	@RequestMapping("/managernames")
+	Iterable<String> getManagersAvailable(){
+		return managerServ.findAllManagersAvailable();
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/manager/{managerName}")
+	void updateManagerWithProjectCreation(@RequestBody ProjectDetails project, @PathVariable String managerName) {
+		managerServ.updateManagerWithProjectCreation(project,managerName);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/managerchange")
+	void updateManagerWithProjectEdit(@RequestBody String projectName) {
+		managerServ.updateManagerWithProjectEdit(projectName);
+	}
+	
 }
