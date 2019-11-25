@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.ibm.bean.EmployeeDetails;
 import com.ibm.bean.ProjectDetails;
@@ -24,6 +25,9 @@ public class UserController {
 	
 	@Autowired
 	EmployeeService empService;
+	
+	@Autowired
+	RestTemplate restTemplate;
 	
 	@RequestMapping("/employee")
 	Iterable<EmployeeDetails> getCards(){
@@ -43,6 +47,7 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.DELETE,value = "/employee/{employeeName}")
 	void delEmployee(@PathVariable String employeeName) {
 		empService.delEmployee(employeeName);
+		restTemplate.put("http://localhost:8086/taskDetails/tasks", employeeName);
 	}
 	
 	@RequestMapping("/availableEmployee")
@@ -84,6 +89,7 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.POST, value = "/project")
 	void addProject(@RequestBody ProjectDetails project) {
 		projService.save(project);
+		restTemplate.postForObject("http://localhost:8787/project",project,String.class);
 	}
 	
 	@RequestMapping("/project")

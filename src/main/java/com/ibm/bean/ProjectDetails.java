@@ -14,13 +14,13 @@ public class ProjectDetails {
 	@Id
 	String projectName;
 	String clientName,technologies,startDate,endDate,city,country,priority,
-			manager,teamMembers,projectDescription;
+			manager,projectDescription;
 	
 	ProjectDetails(){
 		
 	}
 	public ProjectDetails(String clientName, String projectName, String technologies, String startDate, String endDate,
-			String city, String country, String priority, String manager, String teamMembers, String projectDescription) {
+			String city, String country, String priority, String manager,String projectDescription) {
 		this.clientName = clientName;
 		this.projectName = projectName;
 		this.technologies = technologies;
@@ -30,7 +30,6 @@ public class ProjectDetails {
 		this.country = country;
 		this.priority = priority;
 		this.manager = manager;
-		this.teamMembers = teamMembers;
 		this.projectDescription = projectDescription;
 	}
 	public String getClientName() {
@@ -86,12 +85,6 @@ public class ProjectDetails {
 	}
 	public void setManager(String manager) {
 		this.manager = manager;
-	}
-	public String getTeamMembers() {
-		return teamMembers;
-	}
-	public void setTeamMembers(String teamMembers) {
-		this.teamMembers = teamMembers;
 	}
 	public int getProjId() {
 		return projId;
