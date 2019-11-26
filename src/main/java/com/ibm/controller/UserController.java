@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.ibm.bean.EmployeeDetails;
+import com.ibm.bean.LoginDetails;
 import com.ibm.bean.ManagerDetails;
 import com.ibm.bean.ProjectDetails;
 import com.ibm.service.EmployeeService;
+import com.ibm.service.LoginService;
 import com.ibm.service.ManagerService;
 import com.ibm.service.ProjectService;
 
@@ -32,7 +34,15 @@ public class UserController {
 	ManagerService managerServ;
 	
 	@Autowired
+	LoginService login;
+	
+	@Autowired
 	RestTemplate restTemplate;
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/login")
+	Integer validate(@RequestBody LoginDetails credentials) {
+		return login.validate(credentials);
+	}
 	
 	@RequestMapping("/employee")
 	Iterable<EmployeeDetails> getCards(){
