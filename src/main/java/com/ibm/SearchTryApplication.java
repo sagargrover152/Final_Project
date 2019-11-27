@@ -21,4 +21,4 @@ public class SearchTryApplication {
 		return new RestTemplate();
 }	
 }
->>>>>>> branch 'master' of https://github.com/sagargrover152/RestAPI
+
