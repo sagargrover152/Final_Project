@@ -32,6 +32,20 @@ public class ProjectDetails {
 		this.manager = manager;
 		this.projectDescription = projectDescription;
 	}
+	public ProjectDetails(int projId, String projectName, String clientName, String technologies, String startDate,
+			String endDate, String city, String country, String priority, String manager, String projectDescription) {
+		this.projId = projId;
+		this.projectName = projectName;
+		this.clientName = clientName;
+		this.technologies = technologies;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.city = city;
+		this.country = country;
+		this.priority = priority;
+		this.manager = manager;
+		this.projectDescription = projectDescription;
+	}
 	public String getClientName() {
 		return clientName;
 	}
