@@ -104,11 +104,12 @@ public class UserController {
 	@HystrixCommand(fallbackMethod = "saveStillWorks")
 	@RequestMapping(method = RequestMethod.POST, value = "/project")
 	String addProject(@RequestBody ProjectDetails project) {
-		projService.save(project);
+		
 		String manager=project.getManager();
-		String url = "http://localhost:8080/manager/"+manager;
+		String url = "http://localhost:8086/restApi/manager/"+manager;
 		restTemplate.put(url, project);
-		restTemplate.postForObject("http://localhost:8787/project",project,String.class);
+		restTemplate.postForObject("http://localhost:8086/chartChartingService/project",project,String.class);
+		projService.save(project);
 		return "";
 	}
 	
@@ -123,9 +124,10 @@ public class UserController {
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/project/{projectName}")
 	void updateProject(@RequestBody ProjectDetails proj, @PathVariable String projectName) {
+		
+		restTemplate.put("http://localhost:8086/restApi/managerchange", proj.getProjectName());
+		restTemplate.put("http://localhost:8086/restApi/manager/"+proj.getManager(), proj);
 		projService.updateProject(proj,projectName);
-		restTemplate.put("http://localhost:8080/managerchange", proj.getProjectName());
-		restTemplate.put("http://localhost:8080/manager/"+proj.getManager(), proj);
 		
 	}
 	
