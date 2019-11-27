@@ -19,6 +19,7 @@ import com.ibm.service.EmployeeService;
 import com.ibm.service.LoginService;
 import com.ibm.service.ManagerService;
 import com.ibm.service.ProjectService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 
 @RestController
@@ -100,14 +101,19 @@ public class UserController {
 		 return projService.findAllProject(str);
 	}
 	
-	
+	@HystrixCommand(fallbackMethod = "saveStillWorks")
 	@RequestMapping(method = RequestMethod.POST, value = "/project")
-	void addProject(@RequestBody ProjectDetails project) {
+	String addProject(@RequestBody ProjectDetails project) {
 		projService.save(project);
 		String manager=project.getManager();
 		String url = "http://localhost:8080/manager/"+manager;
 		restTemplate.put(url, project);
 		restTemplate.postForObject("http://localhost:8787/project",project,String.class);
+		return "";
+	}
+	
+	String saveStillWorks(ProjectDetails project) {
+		return "Cannot Connect To Chart Charting Server";
 	}
 	
 	@RequestMapping("/project")
